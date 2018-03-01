@@ -54,15 +54,16 @@ module.exports = function count(s, pairs) {
 
 
     for (var i = 0; i < pairs.length; i++){
-        N *= bin_pow_with_mod(pairs[i][0], pairs[i][1]);
-        N %= MOD;
+        N *= Math.pow(pairs[i][0], pairs[i][1])
     }
+
+    if (s[0] === '1' && s.length === 1) { return phi(N);}
     N %= 10000000;
     var prime_result = phi(N), verse_result = N - prime_result;
     var ans = 0;
 
 
-    if (s[0] === '1' && s.length === 1) { return phi(N);}
+
 
     var iter = 0;
     for (var i = 0; i <= N; i++){
@@ -85,6 +86,6 @@ module.exports = function count(s, pairs) {
     }
     if (s === '0')
         return ans - 1;
-    else
+else
         return ans;
 };
