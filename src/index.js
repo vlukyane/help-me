@@ -66,16 +66,14 @@ module.exports = function count(s, pairs) {
 
 
     for (var i = 0; i <= N; i++){
-
-
         var k = 0;
         for (var j = 0; j < s.length; j++){
             var cur_gcd = gcd(i + j, N);
             if (((s[j] === '1' && cur_gcd === 1) || (s[j] === '0' && cur_gcd > 1)) && (i + j <= N)) {
                 k++;
             }
+            else break;
         }
-
         if (k === s.length) {
             ans++;
         }
