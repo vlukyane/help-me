@@ -57,33 +57,26 @@ module.exports = function count(s, pairs) {
         N *= bin_pow_with_mod(pairs[i][0], pairs[i][1]);
         N %= MOD;
     }
-    N %= MOD;
+    N %= 10000000;
     var prime_result = phi(N), verse_result = N - prime_result;
     var ans = 0;
-    if (N > 100000000)
-        if (s[0] === '1') {
-            return prime_result % MOD;
-        }
-        else {
-            return verse_result % MOD;
-        }
+
+
+    if (s[0] === '1' && s.length === 1) { return phi(N);}
+
+
     for (var i = 0; i <= N; i++){
 
 
         var k = 0;
-        var arr = [];
         for (var j = 0; j < s.length; j++){
-            var cur_gcd = gcd(i + j,N);
-            if (cur_gcd === 0) continue;
+            var cur_gcd = gcd(i + j, N);
             if (((s[j] === '1' && cur_gcd === 1) || (s[j] === '0' && cur_gcd > 1)) && (i + j <= N)) {
                 k++;
-                arr.push([i, j, i + j, cur_gcd]);
             }
         }
 
         if (k === s.length) {
-            if (N === 6)
-                console.log(arr);
             ans++;
         }
 
